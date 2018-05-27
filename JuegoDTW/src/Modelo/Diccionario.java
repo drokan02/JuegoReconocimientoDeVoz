@@ -27,8 +27,9 @@ public class Diccionario {
     File diccionario;
     public Diccionario(){
         palabras = new ArrayList<>();
-        diccionario = new File("src/grabaciones/diccionario.txt");
+        diccionario = new File("src/Diccionario/diccionario.txt");
         crearLecturaEscritura();
+        cargarDiccionario();
     }
     
     private void crearLecturaEscritura(){
@@ -40,12 +41,12 @@ public class Diccionario {
         }
     }
     
-    public void cargarDiccionario(){
+    private void cargarDiccionario(){
         try {
             while(lecturaDiccionario.ready()){
                 Palabra palabra = new Palabra();
                 String p = lecturaDiccionario.readLine();
-                File audio = new File("src/grabaciones/"+p+".wav");
+                File audio = new File("src/Diccionario/"+p+".wav");
                 palabra.setPalabra(p);
                 palabra.setAudio(audio);
                 palabra.setMuestra(new Grabador().muestraDeAudio(audio));
@@ -83,7 +84,7 @@ public class Diccionario {
         DTW dtw = new DTW();
         for(Palabra p: palabras){
             aux = dtw.matrizAcumulada(p.getMuestra(),palabra.getMuestra());
-            System.out.println(aux+"  "+ p.getPalabra()+p.getMuestra().length+"  "+palabra.getMuestra().length);
+            //System.out.println(aux+"  "+ p.getPalabra()+p.getMuestra().length+"  "+palabra.getMuestra().length);
             if(menor(men,aux) == aux){
                 men = aux;
                 res = p;
