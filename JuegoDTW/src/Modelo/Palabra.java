@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.io.File;
  */
 public class Palabra {
     String palabra;
-    double[] muestra;
+    ArrayList<Double> muestra;
     File audio;
 
     public String getPalabra() {
@@ -24,11 +25,11 @@ public class Palabra {
         this.palabra = palabra;
     }
 
-    public double[] getMuestra() {
+    public ArrayList<Double> getMuestra() {
         return muestra;
     }
 
-    public void setMuestra(double[] muestra) {
+    public void setMuestra(ArrayList<Double> muestra) {
         this.muestra = muestra;
     }
 

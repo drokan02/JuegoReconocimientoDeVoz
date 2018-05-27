@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author DroKaN
@@ -12,12 +14,12 @@ package Modelo;
 public class DTW {
    
 
-    public double matrizAcumulada(double[] s1,double[] s2){
+    public double matrizAcumulada(ArrayList<Double> s1,ArrayList<Double> s2){
         int x,y;
         double res;
         double[][] mA = matrizDistancia(s1, s2);
-         x = s1.length; 
-         y = s2.length;
+         x = s1.size(); 
+         y = s2.size();
         if(mA[0].length > 0){
             
             for(int i = 1 ; i < x ; i++){
@@ -39,15 +41,15 @@ public class DTW {
         //return mA[x-1][y-1]/(x+y);
     }
     //calcula la distancia que existe entre ambas señales
-    private double[][] matrizDistancia(double[] s1,double[] s2){
-         int x = s1.length, y=s2.length;
+    private double[][] matrizDistancia(ArrayList<Double> s1,ArrayList<Double> s2){
+         int x = s1.size(), y=s2.size();
         
         if(x > 0 && y > 0){
             double[][] mD = new double[x][y];
             
             for(int i = 0 ; i < x ; i++){
                  for(int j = 0 ; j < y ; j++){
-                   mD[i][j] = Math.abs(s1[i] - s2[j]);
+                   mD[i][j] = Math.abs(s1.get(i) - s2.get(j));
                 }
             }
             return mD;//retornamos la matriz distancia
