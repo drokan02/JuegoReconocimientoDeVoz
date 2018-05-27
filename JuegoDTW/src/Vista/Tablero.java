@@ -29,7 +29,7 @@ public class Tablero extends javax.swing.JFrame {
 
         lbTorre = new javax.swing.JLabel();
         lbTablero = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btMover = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,8 +40,8 @@ public class Tablero extends javax.swing.JFrame {
         lbTablero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lbTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 720));
 
-        jButton1.setText("Mover");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, -1, -1));
+        btMover.setText("Mover");
+        getContentPane().add(btMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, -1, -1));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 120, 720));
 
         pack();
@@ -83,9 +83,9 @@ public class Tablero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lbTablero;
-    private javax.swing.JLabel lbTorre;
+    public javax.swing.JButton btMover;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel lbTablero;
+    public javax.swing.JLabel lbTorre;
     // End of variables declaration//GEN-END:variables
 }

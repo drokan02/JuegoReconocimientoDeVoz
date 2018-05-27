@@ -20,7 +20,7 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       ControlJuego c = new ControlJuego();
+      /* ControlJuego c = new ControlJuego();
        int res=0;
        ArrayList<Convinacion> con = c.convinaciones;
        ArrayList<Double> resultados =  new ArrayList<>();
@@ -37,6 +37,7 @@ public class NewMain {
        for(Double d:resultados){
            System.out.print(d);
        }
+*/
     }
     
 }

@@ -9,6 +9,7 @@ package Modelo;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -17,14 +18,14 @@ import javax.swing.ImageIcon;
 public class Complementos {
     
 
-    public static Icon nuevoIcono(String nombreImg,int width,int height){
-       ImageIcon i = new ImageIcon("src/pruebas/"+nombreImg);
+    public static void nuevoIcono(String nombreImg,JLabel lb,boolean setTamanio){
+       ImageIcon i = new ImageIcon("src/Imagenes/"+nombreImg);
        Icon icon;
-       if(width > 0 && height > 0)
-            icon= new ImageIcon(i.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+       if(setTamanio)
+            icon= new ImageIcon(i.getImage().getScaledInstance(lb.getWidth(), lb.getHeight(), Image.SCALE_DEFAULT));
        else 
             icon = new ImageIcon(i.getImage());
-       return icon;
+       lb.setIcon(icon);
     }
      
     public static void dormirHilo(int tiempo){

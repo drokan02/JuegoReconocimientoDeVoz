@@ -6,21 +6,47 @@
 package Controlador;
 
 import Modelo.*;
+import Vista.Tablero;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
  *
  * @author DroKaN
  */
-public class ControlJuego {
-        ArrayList<Convinacion> convinaciones;
+public class ControlJuego implements ActionListener
+{
+        private final ArrayList<Convinacion> convinaciones;
+        private final Tablero tablero;
         
-        public ControlJuego(){
+        public ControlJuego()
+        {
             convinaciones = new ArrayList<>();
-            convinar();
+            tablero = new Tablero();
         }
         
-        private void convinar(){
+        
+        public void mostrarTablero()
+        {
+            cargarImagenes();
+            cargarEventos();
+            tablero.setLocationRelativeTo(null);
+            tablero.setVisible(true);         
+        }
+        
+        private void cargarEventos()
+        {
+            tablero.btMover.addActionListener(this);
+        }
+        
+        private void cargarImagenes()
+        {  
+            Complementos.nuevoIcono("torre.png", tablero.lbTorre, true);
+        }
+        
+        private void convinar()
+        {
            Diccionario d = new Diccionario();
            int tam = d.getTamanioD();
            System.out.println(tam);
@@ -37,5 +63,15 @@ public class ControlJuego {
                 
            }
         }
+
+    @Override
+    public void actionPerformed(ActionEvent e) 
+    {
+        if (e.getSource() == tablero.btMover){
+            String[] m = {"izquierda","derecha","arriba"};
+            new Mover(tablero.lbTorre, m).start();
+
+        }
+    }   
         
 }
