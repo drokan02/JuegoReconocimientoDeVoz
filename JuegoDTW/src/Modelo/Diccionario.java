@@ -29,6 +29,7 @@ public class Diccionario {
         palabras = new ArrayList<>();
         diccionario = new File("src/Diccionario/diccionario.txt");
         crearLecturaEscritura();
+        cargarDiccionario();
     }
     
     private void crearLecturaEscritura(){
@@ -40,7 +41,7 @@ public class Diccionario {
         }
     }
     
-    public void cargarDiccionario(){
+    private void cargarDiccionario(){
         try {
             while(lecturaDiccionario.ready()){
                 Palabra palabra = new Palabra();

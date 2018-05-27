@@ -13,7 +13,9 @@ import java.util.ArrayList;
  */
 public class Convinacion {
     ArrayList<Palabra> convinacion;
-    
+    public Convinacion(){
+        convinacion = new ArrayList<>();
+    }
     public ArrayList<Palabra> getConvinacion(){
        return convinacion;
     }

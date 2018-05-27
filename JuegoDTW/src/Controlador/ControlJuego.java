@@ -17,20 +17,25 @@ public class ControlJuego {
         
         public ControlJuego(){
             convinaciones = new ArrayList<>();
+            convinar();
         }
         
         private void convinar(){
            Diccionario d = new Diccionario();
-           for(int i = 0 ; i < d.getTamanioD() ; i++){
-                Convinacion con = new Convinacion();
-                d.getPalabra(i);
-                for(int j = 0 ; j < d.getTamanioD() ; j++){
-                    d.getPalabra(j);
-                    for(int k = 0 ; k < d.getTamanioD() ; k++){
-                        d.getPalabra(k);
+           int tam = d.getTamanioD();
+           System.out.println(tam);
+           for(int i = 0 ; i < tam ; i++){  
+                for(int j = 0 ; j < tam ; j++){ 
+                    for(int k = 0 ; k < tam ; k++){
+                        Convinacion con = new Convinacion();
+                        con.addPalabra(d.getPalabra(i));
+                        con.addPalabra(d.getPalabra(j));
+                        con.addPalabra(d.getPalabra(k));
+                        convinaciones.add(con);
                     }
                 }
-                convinaciones.add(con);
+                
            }
         }
+        
 }
