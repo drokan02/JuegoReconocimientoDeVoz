@@ -27,7 +27,7 @@ public class Mover extends Thread {
             mover(movimientos[m]);
         }
     }
-    
+    //mueve la torre deacuerdo al tipo de movimiento que se le pida
     private void mover(String obs){
        for(int i = 0 ; i < 72 ; i++){
             switch(obs){
@@ -41,7 +41,7 @@ public class Mover extends Thread {
                      break;
                 default:
             }
-            Complementos.dormirHilo(25);
+            Complementos.dormir(25);
        }
     }
     private void moverArriba()

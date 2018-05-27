@@ -28,7 +28,7 @@ public class Complementos {
        lb.setIcon(icon);
     }
      
-    public static void dormirHilo(int tiempo){
+    public static void dormir(int tiempo){
            try {
                 Thread.sleep(tiempo);
               } catch (Exception ex) {

@@ -26,14 +26,19 @@ public class dtwMejorado extends Thread{
     public void run()
     {
         ArrayList<Double>  fIni = filaAcumulada(m1.get(0),null,m2);
+        /**tomamos m1 como la muestra que estara en la cordenada y
+         * asi que cada valor sera como una fila donde el ultimo valor
+         * que se itere sera la primera fila de la planilla
+         */
         for(int i = 1 ; i < m1.size() ; i++){
             fIni = filaAcumulada(m1.get(i), fIni, m2);
             
         }
         System.out.println(fIni.get(fIni.size()-1));
+        //se agrega el ultimo valor de la fila que representa el camino mas corto
         resultados.add(fIni.get(fIni.size()-1));
     }
-    
+    //devuelve los valores acumulados de la siguiente fila
     public ArrayList<Double> filaAcumulada(double vCol,ArrayList<Double>  fIni,ArrayList<Double> m2){
         ArrayList<Double> res = new ArrayList<>();
         double valor;
