@@ -13,6 +13,10 @@ import java.util.ArrayList;
  */
 public class Convinacion {
     ArrayList<Palabra> convinacion;
+    
+    public int getTamanio(){
+        return convinacion.size();
+    }
     public Convinacion(){
         convinacion = new ArrayList<>();
     }
@@ -33,6 +37,13 @@ public class Convinacion {
     }
     public void addPalabra(Palabra p){
         convinacion.add(p);
+    }
+    public String getConvinacionT(){
+        String res = "";
+        for(Palabra c : convinacion){
+            res += c.getPalabra()+" ";
+        }
+        return res;
     }
 }
 

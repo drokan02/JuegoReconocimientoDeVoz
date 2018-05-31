@@ -77,20 +77,8 @@ public class Diccionario {
     }
     
     public Palabra buscarPalabra(Palabra palabra){
-        Palabra res=null;
-        double men = 10;
-        double aux ;
-        int i=0;
-        DTW dtw = new DTW();
-        for(Palabra p: palabras){
-            aux = dtw.matrizAcumulada(p.getMuestra(),palabra.getMuestra());
-            //System.out.println(aux+"  "+ p.getPalabra()+p.getMuestra().length+"  "+palabra.getMuestra().length);
-            if(menor(men,aux) == aux){
-                men = aux;
-                res = p;
-            }
-        }
-        return res;
+        
+        return null;
     }
     
     public Palabra getPalabra(int indice){

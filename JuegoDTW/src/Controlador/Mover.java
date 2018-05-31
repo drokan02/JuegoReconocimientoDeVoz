@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Complementos;
+import Modelo.Convinacion;
 import javax.swing.JLabel;
 
 /**
@@ -13,18 +14,20 @@ import javax.swing.JLabel;
  * @author DroKaN
  */
 public class Mover extends Thread {
-    String[] movimientos;
+    Convinacion movimientos;
     JLabel lbTorre;
     
-    public Mover(JLabel lnTorre, String[] movimientos){
+    public Mover(JLabel lnTorre, Convinacion movimientos){
         this.lbTorre = lnTorre;
         this.movimientos = movimientos;
     }
     
     public void run() {
-        for(int m = 0 ; m < movimientos.length ;m++ )
+        int n = movimientos.getTamanio();
+        for(int m = 0 ; m < n ;m++ )
         {
-            mover(movimientos[m]);
+           String movimiento = movimientos.getPalabra(m).getPalabra();
+            mover(movimiento);
         }
     }
     //mueve la torre deacuerdo al tipo de movimiento que se le pida

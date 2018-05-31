@@ -6,8 +6,7 @@
 package Modelo;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.DecimalFormat;
+import java.util.Vector;
 import java.util.ArrayList;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
@@ -72,14 +71,14 @@ public class Grabador{
         int N = buffer.length;  
         double[] d = new double[N/2];
         for (int i = 0; i < N/2; i++) {
-            d[i] = ((short) (((buffer[2*i+1] & 0xFF) << 8) + (buffer[2*i] & 0xFF)))/32768.0 ;
+            d[i] = ((short) (((buffer[2*i+1] & 0xFF) << 8) + (buffer[2*i] & 0xFF)))/32767.0 ;
         }
+       // return TrimAudio.removeSilence(d, 8000);
         return recortarMuestra(d,.3, 8000);
         } catch (Exception e){}
         return new ArrayList<>();   
     }
-    
-   
+ 
     //elimina los espacios vacios reduciendo el tamaño de la muestra en un porcentaje(pad)
      public ArrayList<Double> recortarMuestra(double[] a,double pad,int fr){
         ArrayList<Double> res = new ArrayList<>();
@@ -92,6 +91,7 @@ public class Grabador{
         if(min == 1 || max==a.length){
             return  res;
         }else{
+            
             res.addAll(nuevaMuestra(a,min,max));
             filtrarMuesta(res, 0.97);
             return res;
