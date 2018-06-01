@@ -34,14 +34,14 @@ public class Tablero extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(lbTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 580, 70, 70));
+        getContentPane().add(lbTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 550, 70, 70));
 
         lbTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tablero.png"))); // NOI18N
         lbTablero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(lbTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 720));
+        getContentPane().add(lbTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 720, 640));
 
         btMover.setText("Mover");
-        getContentPane().add(btMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, -1, -1));
+        getContentPane().add(btMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, -1, -1));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 100, 720));
 
         pack();
