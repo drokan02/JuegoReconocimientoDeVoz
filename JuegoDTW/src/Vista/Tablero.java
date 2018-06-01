@@ -27,22 +27,26 @@ public class Tablero extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btMover = new javax.swing.JButton();
         lbTorre = new javax.swing.JLabel();
         lbTablero = new javax.swing.JLabel();
-        btMover = new javax.swing.JButton();
+        btGrabar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(lbTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 550, 70, 70));
+
+        btMover.setText("Mover");
+        getContentPane().add(btMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, -1, -1));
+        getContentPane().add(lbTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 70, 70));
 
         lbTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tablero.png"))); // NOI18N
         lbTablero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(lbTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 720, 640));
+        getContentPane().add(lbTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 720));
 
-        btMover.setText("Mover");
-        getContentPane().add(btMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, -1, -1));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 100, 720));
+        btGrabar.setText("Grabar");
+        getContentPane().add(btGrabar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 120, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -83,6 +87,7 @@ public class Tablero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btGrabar;
     public javax.swing.JButton btMover;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel lbTablero;
