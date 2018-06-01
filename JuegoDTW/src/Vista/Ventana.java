@@ -7,6 +7,7 @@ package Vista;
 
 import Modelo.Complementos;
 import Modelo.Jugador;
+import Modelo.MoverJugador;
 import Modelo.TableroJuego;
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class Ventana extends javax.swing.JFrame {
     TableroJuego tablero;
     Jugador jugador;
     public Ventana() {
-        tablero = new TableroJuego(2,2);
+        tablero = new TableroJuego(4,4);
         tablero.llenarTablero(this,72,72);
         jugador = new Jugador("Raul",5);
         jugador.mostrarPersonaje(this, 72, 72);
@@ -50,7 +51,7 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(309, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -70,10 +71,11 @@ public class Ventana extends javax.swing.JFrame {
         ArrayList<String> m = new ArrayList<>();
         m.add("derecha");
         m.add("derecha");
-        m.add("derecha");
+        m.add("arriba");
         m.add("abajo");
         m.add("abajo");
-        jugador.realizarMovimientos(m);
+        //jugador.realizarMovimientos(m,tablero);
+        new MoverJugador(jugador, tablero, m).start();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

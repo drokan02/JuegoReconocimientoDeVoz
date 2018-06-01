@@ -35,89 +35,53 @@ public class Jugador {
         ventana.add(personaje);
     }
     
-    public void realizarMovimientos(ArrayList<String> movimientos){
-        new MoverJugador(movimientos).start();
+    public int getVidas(){
+        return nroVidas;
     }
     
-    private int getAncho(){
+    public void setVidas(int n){
+        nroVidas = nroVidas + n;
+    }
+    public int getAncho(){
         return personaje.getWidth();
     }
     
-    private int getLargo(){
+    public int getLargo(){
         return personaje.getHeight();
+    }
+    
+    public int getPosX(){
+        return posX;
+    }
+    
+    public int getPosY(){
+        return posY;
+    }
+    
+    public void setPosX(int x){
+        posX = posX+x;
+    }
+    
+    public void setPosY(int y){
+        posY = posY+y;
+    }
+    
+    public int getFotograma(){
+        return fotograma;
+    }
+    
+    public void setFotograma(){
+        fotograma =  fotograma + 1;
+        if(fotograma > 28)
+            fotograma = 0;
     }
     
     public void mostrarPersonaje(){
         Complementos.nuevoIcono(fotograma+".png", personaje, true);
     }
     
-    //hilo para animar los movimientos del personaje
-    public class MoverJugador extends Thread{
-    private ArrayList<String> movimientos;
-    
-    public MoverJugador(ArrayList<String> movimientos){
-        this.movimientos = movimientos;
-    }
-    
-    
-    
-    public void run(){
-        for(String movimiento : movimientos){
-            if(movimiento.equals("izquierda")|| movimiento.equals("derecha" )){
-                for(int n = 0 ; n < getAncho() ;n++){
-                    moverse(movimiento);
-                    Complementos.dormir(40);
-                }
-            }else{
-                for(int n = 0 ; n < getLargo() ;n++){
-                    moverse(movimiento);
-                    Complementos.dormir(40);
-                }
-            }     
-        }
-    }
-    
-    private void moverse(String movimiento){
-        switch(movimiento){
-            case "izquierda" : caminarIzquierda();
-                break;
-            case "derecha"   : caminarDerecha();
-                break;
-            case "arriba"    : caminarArriba();
-                break;
-            case "abajo"     : caminarAbajo();
-                break;
-            
-        }
-    }
-    
-    private void caminarIzquierda(){
-        posX =posX -1;
-        modificarPosicion(-1,0);
-         
-    }
-    
-    private void caminarDerecha(){
-        posX =posX -1;
-        modificarPosicion(1,0);
-    }
-      
-    private void caminarArriba(){
-        posY =posY +1;
-        modificarPosicion(0,-1);
-    }
-      
-    private void caminarAbajo(){
-        posY =posY -1;
-        modificarPosicion(0,1);
-    }
-    
-    private void modificarPosicion(int x,int y){
-        fotograma =  fotograma + 1;
+    public void setPosicionPersonaje(int x,int y){
         personaje.setLocation(personaje.getX()+x, personaje.getY()+y);
-        mostrarPersonaje();
-        if(fotograma == 28)
-            fotograma = -1;
-    }      
-}
+    }
+    
 }
