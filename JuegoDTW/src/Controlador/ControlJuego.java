@@ -6,7 +6,6 @@
 package Controlador;
 
 import Modelo.*;
-import Vista.Tablero;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -20,34 +19,28 @@ import javax.swing.JOptionPane;
 public class ControlJuego implements ActionListener
 {
         ArrayList<Convinacion> convinaciones;
-        private final Tablero tablero;
+
         private Palabra movimiento;
         public ControlJuego()
         {
             convinaciones = new ArrayList<>();
-            tablero = new Tablero();
         }
         
         
         public void mostrarTablero()
         {
-            cargarImagenes();
+
             cargarEventos();
             convinarMuestras();
-            tablero.setLocationRelativeTo(null);
-            tablero.setVisible(true);         
+       
         }
         
         private void cargarEventos()
         {
-            tablero.btGrabar.addActionListener(this);
-            tablero.btMover.addActionListener(this);
+
         }
         
-        private void cargarImagenes()
-        {  
-            Complementos.nuevoIcono("torre.png", tablero.lbTorre, true);
-        }
+
         
         public void convinarMuestras()
         {
@@ -62,8 +55,6 @@ public class ControlJuego implements ActionListener
                                 con.addPalabra(d.getPalabra(i));
                                 con.addPalabra(d.getPalabra(j));
                                 con.addPalabra(d.getPalabra(k));
-                                
-                                
                                 convinaciones.add(con);
                             }
                         }
@@ -75,15 +66,15 @@ public class ControlJuego implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) 
     {
-        if (e.getSource() == tablero.btGrabar){
+        if (e.getSource() == null){
             movimiento = grabarMuestra();
             if(movimiento.getMuestra().size()> 0){
                 System.out.println(movimiento.getMuestra().size()+" "+convinaciones.size());
                 
             }else
-                JOptionPane.showMessageDialog(tablero, "no se entendio lo que dijo");
+                JOptionPane.showMessageDialog(null, "no se entendio lo que dijo");
         }
-        if (e.getSource() == tablero.btMover){
+        if (e.getSource() == null){
             realizarMovimientos(movimiento);
         }
     }  
@@ -113,7 +104,7 @@ public class ControlJuego implements ActionListener
         for(int i = 0 ; i < 5 ;i++)
         {
             ArrayList<Double> m2 = convinaciones.get(i).getMuestra();
-            new dtwMejorado(resultados, p.getMuestra(), m2).start();
+            new DTW(resultados, p.getMuestra(), m2).start();
         }
         
         while(tamanioRes < 5)
@@ -130,8 +121,7 @@ public class ControlJuego implements ActionListener
                indice = i;
            }      
         }
-        
-        new Mover(tablero.lbTorre, convinaciones.get(indice)).start();
+
     }
     
     private double menor(double n,double m){

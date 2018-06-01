@@ -12,13 +12,13 @@ import smile.math.distance.DynamicTimeWarping;
  *
  * @author DroKaN
  */
-public class dtwMejorado extends Thread{
+public class DTW extends Thread{
     
     private ArrayList<Double> resultados;
     private double[] m1;
     private double[] m2;
     
-    public dtwMejorado(ArrayList<Double> resultados,ArrayList<Double> m1,ArrayList<Double> m2)
+    public DTW(ArrayList<Double> resultados,ArrayList<Double> m1,ArrayList<Double> m2)
     {
         this.resultados = resultados;
         this.m1 = doubleArray(m1);
