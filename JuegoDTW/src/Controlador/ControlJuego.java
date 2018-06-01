@@ -42,7 +42,7 @@ public class ControlJuego implements ActionListener
         
         private void cargarImagenes()
         {  
-            Complementos.nuevoIcono("torre.png", tablero.lbMario, true);
+            Complementos.nuevoIcono("torre.png", tablero.lbTorre, true);
         }
         
         private void convinar()
@@ -69,7 +69,7 @@ public class ControlJuego implements ActionListener
     {
         if (e.getSource() == tablero.btMover){
             String[] m = {"izquierda","derecha","arriba"};
-            new Mover(tablero.lbMario, m).start();
+            new Mover(tablero.lbTorre, m).start();
 
         }
     }   

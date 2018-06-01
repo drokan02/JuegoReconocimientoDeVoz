@@ -27,22 +27,18 @@ public class Tablero extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbMario = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lbTorre = new javax.swing.JLabel();
         lbTablero = new javax.swing.JLabel();
         btMover = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(lbMario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 560, 70, 70));
-
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 500, 72, 72));
+        getContentPane().add(lbTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 580, 70, 70));
 
         lbTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tablero.png"))); // NOI18N
         lbTablero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(lbTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 720, 720));
+        getContentPane().add(lbTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 720));
 
         btMover.setText("Mover");
         getContentPane().add(btMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, -1, -1));
@@ -88,9 +84,8 @@ public class Tablero extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btMover;
-    private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
-    public javax.swing.JLabel lbMario;
     public javax.swing.JLabel lbTablero;
+    public javax.swing.JLabel lbTorre;
     // End of variables declaration//GEN-END:variables
 }
