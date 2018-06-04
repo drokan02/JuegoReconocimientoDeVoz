@@ -16,13 +16,10 @@ import java.util.ArrayList;
  * @author DroKaN
  */
 public class Ventana extends javax.swing.JFrame {
-    TableroJuego tablero;
-    Jugador jugador;
+ 
     public Ventana() {
-        tablero = new TableroJuego(4,4);
-        tablero.llenarTablero(this,72,72);
-        jugador = new Jugador("Raul",5);
-        jugador.mostrarPersonaje(this, 72, 72);
+        
+        
         initComponents();
         
     }
@@ -36,47 +33,51 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btJugar = new javax.swing.JButton();
+        lbGrabando = new javax.swing.JLabel();
+        txtPuntos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        btJugar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btJugar.setText("Jugar");
+
+        lbGrabando.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbGrabando.setText("puntos :");
+
+        txtPuntos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtPuntos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(309, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap(312, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btJugar)
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbGrabando)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jButton1)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(btJugar)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbGrabando)
+                    .addComponent(txtPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ArrayList<String> m = new ArrayList<>();
-        m.add("derecha");
-        m.add("derecha");
-        m.add("arriba");
-        m.add("abajo");
-        m.add("abajo");
-        //jugador.realizarMovimientos(m,tablero);
-        new MoverJugador(jugador, tablero, m).start();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,6 +115,8 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton btJugar;
+    private javax.swing.JLabel lbGrabando;
+    public javax.swing.JLabel txtPuntos;
     // End of variables declaration//GEN-END:variables
 }

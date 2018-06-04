@@ -76,10 +76,19 @@ public class TableroJuego {
             }
         }
     }
-    public void revelarCuadro(int x,int y){
+    public int revelarCuadro(int x,int y){
         Cuadro cuadro = tablero[x][y];
         cuadro.verEstado();
+        return puntos(cuadro.getEstado());
     }
     
+    private int puntos(String estado){
+        int res = 0;
+        if(estado.equals("trampa"))
+            return -2;
+        else if(estado.equals("Hongo"))
+            return 1;
+        return res;
+    }
     
 }

@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import javax.swing.JLabel;
 
 /**
  *
@@ -15,12 +16,13 @@ public class MoverJugador extends Thread{
     Jugador jugador;
     TableroJuego tablero;
     ArrayList<String> movimientos;
-    
-    public MoverJugador(Jugador jugador,TableroJuego tablero, ArrayList<String> movimientos)
+    JLabel puntuacion;
+    public MoverJugador(Jugador jugador,TableroJuego tablero, ArrayList<String> movimientos,JLabel puntuacion)
     {
         this.jugador = jugador;
         this.tablero = tablero;
         this.movimientos = movimientos;
+        this.puntuacion = puntuacion;
     }
     
     public void run(){
@@ -29,22 +31,23 @@ public class MoverJugador extends Thread{
     
     private void moverJugador(){
         for(String movimiento : movimientos){
-            
-            if(movimientoValido(movimiento)){
-                if(movimiento.equals("izquierda") || movimiento.equals("derecha")){
+            if(jugador.getVidas()> 0){
+                if(movimientoValido(movimiento)){
+                    if(movimiento.equals("izquierda") || movimiento.equals("derecha")){
 
-                    for (int n = 0 ; n < jugador.getAncho() ; n++){
-                        mover(movimiento);
-                        Complementos.dormir(40);
+                        for (int n = 0 ; n < jugador.getAncho() ; n++){
+                            mover(movimiento);
+                            Complementos.dormir(40);
+                        }
+                    }else{
+                         for (int n = 0 ; n < jugador.getLargo(); n++){
+                            mover(movimiento);
+                            Complementos.dormir(40);
+                        }
                     }
-                }else{
-                     for (int n = 0 ; n < jugador.getLargo(); n++){
-                        mover(movimiento);
-                        Complementos.dormir(40);
-                    }
+                    verCuadro();
+                    Complementos.dormir(2000);
                 }
-                //verCuadro();
-                //Complementos.dormir(2000);
             }
         }
     }
@@ -112,5 +115,13 @@ public class MoverJugador extends Thread{
         jugador.setPosicionPersonaje(x, y);
         jugador.setFotograma();
         jugador.mostrarPersonaje();
-    }  
+    } 
+    
+    private void verCuadro(){
+        int x = jugador.getPosX();
+        int y = jugador.getPosY();
+        int puntos = tablero.revelarCuadro(x, y);
+        jugador.setVidas(puntos);
+        puntuacion.setText(jugador.getVidas()+"");
+    }
 }

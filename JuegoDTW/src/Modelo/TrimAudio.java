@@ -155,7 +155,7 @@ public class TrimAudio {
         return mean / correllation.length;        
     }
     
-    private static ArrayList<Double> arrayList(double[]a){
+    public static ArrayList<Double> arrayList(double[]a){
         ArrayList<Double> res = new ArrayList<>();
         for(int i = 0 ; i < a.length ; i++){
             res.add(a[i]);

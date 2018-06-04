@@ -73,8 +73,8 @@ public class Grabador{
         for (int i = 0; i < N/2; i++) {
             d[i] = ((short) (((buffer[2*i+1] & 0xFF) << 8) + (buffer[2*i] & 0xFF)))/32767.0 ;
         }
-       // return TrimAudio.removeSilence(d, 8000);
-        return recortarMuestra(d,.3, 8000);
+        return TrimAudio.arrayList(d);
+        //return ;
         } catch (Exception e){}
         return new ArrayList<>();   
     }

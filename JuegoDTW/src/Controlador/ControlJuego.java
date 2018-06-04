@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.*;
+import Vista.Ventana;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -18,12 +19,19 @@ import javax.swing.JOptionPane;
  */
 public class ControlJuego implements ActionListener
 {
-        ArrayList<Convinacion> convinaciones;
-
-        private Palabra movimiento;
+        Jugador jugador;
+        TableroJuego tablero;
+        Diccionario diccionario;
+        private ArrayList<Palabra> movimiento;
+        private Ventana ventana;
+        
         public ControlJuego()
         {
-            convinaciones = new ArrayList<>();
+            jugador = new Jugador("", 5);
+            tablero = new TableroJuego(12,12 );
+            diccionario =  new Diccionario();
+            ventana = new Ventana();
+            movimiento = new ArrayList<>();
         }
         
         
@@ -31,103 +39,72 @@ public class ControlJuego implements ActionListener
         {
 
             cargarEventos();
-            convinarMuestras();
+            jugador.mostrarPersonaje(ventana, 72, 72);
+            tablero.llenarTablero(ventana, 72, 72);
+            tablero.ponerTrampas(40);
+            tablero.poneHongos(30);
+            ventana.setSize(72*15, 72*13);
+            ventana.txtPuntos.setText(jugador.getVidas()+"");
+            ventana.setLocationRelativeTo(null);
+            ventana.setVisible(true);
        
         }
         
         private void cargarEventos()
         {
-
+            ventana.btJugar.addActionListener(this);
         }
         
-
-        
-        public void convinarMuestras()
-        {
-           Diccionario d = new Diccionario();
-           int tam = d.getTamanioD();
-           for(int i = 0 ; i < tam ; i++){
-                for(int j = 0 ; j < tam ; j++){ 
-                   
-                        for(int k = 0 ; k < tam ; k++){
-                            if(i != j && i != k && j != k){
-                                Convinacion con = new Convinacion();
-                                con.addPalabra(d.getPalabra(i));
-                                con.addPalabra(d.getPalabra(j));
-                                con.addPalabra(d.getPalabra(k));
-                                convinaciones.add(con);
-                            }
-                        }
-                }
-                
-           }
-        }
 
     @Override
     public void actionPerformed(ActionEvent e) 
     {
-        if (e.getSource() == null){
-            movimiento = grabarMuestra();
-            if(movimiento.getMuestra().size()> 0){
-                System.out.println(movimiento.getMuestra().size()+" "+convinaciones.size());
-                
-            }else
-                JOptionPane.showMessageDialog(null, "no se entendio lo que dijo");
-        }
-        if (e.getSource() == null){
-            realizarMovimientos(movimiento);
+        if(ventana.btJugar == e.getSource()){
+            AudioSplite as = new AudioSplite();
+            grabarMuestra();
+            as.audioSplite();
+            movimiento.addAll(as.getMuestras());
+            System.out.println(movimiento.size());
+            
+            jugar();
+            
         }
     }  
     
-    private Palabra grabarMuestra(){
+    private void grabarMuestra(){
         Grabador g =  new Grabador();
-        Palabra p = new Palabra();
-        for(int i = 0 ; i < 9 ; i++){
+        for(int i = 0 ; i < 7 ; i++){
             if(i == 0)
                 g.grabarVoz("");
-            else if(i == 8){
-                g.finalizar();
-                File muestra = g.getAudio();
-                p.setAudio(muestra);
-                p.setMuestra(g.muestraDeAudio(muestra));
+
+            else if(i == 6){
+                g.finalizar(); 
             }
             Complementos.dormir(1000);       
         }
-        return p;
-    }
-    
-    private void realizarMovimientos(Palabra p){
-        ArrayList<Double> resultados = new ArrayList<>();
-        int tamanioRes = 0;
-        int indice = 0;
-        double menor = 10000;
-        for(int i = 0 ; i < 5 ;i++)
-        {
-            ArrayList<Double> m2 = convinaciones.get(i).getMuestra();
-            new DTW(resultados, p.getMuestra(), m2).start();
-        }
-        
-        while(tamanioRes < 5)
-        {   
-            tamanioRes = resultados.size();
-            Complementos.dormir(1000);
-        }
-        
-        for(int i = 0 ; i < tamanioRes ; i++){
-            double aux = resultados.get(i);
-            System.err.println(aux +" "+convinaciones.get(i).getConvinacionT());
-           if(menor(menor,aux)!= menor){
-               menor = aux;
-               indice = i;
-           }      
-        }
 
     }
+    
+  
     
     private double menor(double n,double m){
         if(n < m)
             return n;
         return m;
     }
+    
+    private void jugar(){
+        ArrayList<String> movimientos = new ArrayList<>();
+        /*movimientos.add("derecha");
+        movimientos.add("derecha");
+        movimientos.add("abajo");
+        movimientos.add("abajo");
+        */
+        for(Palabra p : movimiento){
+            Palabra palabra = diccionario.buscarPalabra(p);
+            movimientos.add(palabra.getPalabra());
+        }
         
+        new MoverJugador(jugador, tablero, movimientos,ventana.txtPuntos).start();
+    }
 }

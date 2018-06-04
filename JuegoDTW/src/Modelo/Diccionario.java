@@ -77,8 +77,26 @@ public class Diccionario {
     }
     
     public Palabra buscarPalabra(Palabra palabra){
+        int indice = 0;
+        Double menor = Double.POSITIVE_INFINITY;
+        ArrayList<Double> distancias = new ArrayList<>();
+        for(Palabra p : palabras){
+            new DTW(distancias, palabra.getMuestra(), p.getMuestra()).start();   
+        }
+        while(distancias.size() < palabras.size()){
+            Complementos.dormir(1000);
+        }
         
-        return null;
+        for (int i = 0 ; i < distancias.size() ; i++){
+            double d = distancias.get(i);
+            System.out.println(d +" "+palabras.get(i).palabra);
+            if(d < menor){
+                menor = d;
+                indice = i;
+            }
+        }
+        System.out.println();
+        return palabras.get(indice);
     }
     
     public Palabra getPalabra(int indice){
