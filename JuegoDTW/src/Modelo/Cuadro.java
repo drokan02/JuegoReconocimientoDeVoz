@@ -38,12 +38,10 @@ public class Cuadro {
     }
     
     public void verEstado(){
-            if(estado.equals("trampa"))
-                Complementos.nuevoIcono(estado+".png", cuadro, true);
-            else if (estado.equals("hongo"))
-                Complementos.nuevoIcono(estado+".png", cuadro, true);
-            else
+            if(estado.equals(""))
                 Complementos.nuevoIcono("cuadro.png", cuadro, true);
+            else if (!estado.equals("visto"))
+                Complementos.nuevoIcono(estado+".png", cuadro, true);
     }
     
     public JLabel getCuadro(){

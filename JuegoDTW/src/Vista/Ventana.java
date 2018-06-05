@@ -7,7 +7,7 @@ package Vista;
 
 import Modelo.Complementos;
 import Modelo.Jugador;
-import Modelo.MoverJugador;
+import Modelo.Jugar;
 import Modelo.TableroJuego;
 import java.util.ArrayList;
 

@@ -73,12 +73,28 @@ public class Grabador{
         for (int i = 0; i < N/2; i++) {
             d[i] = ((short) (((buffer[2*i+1] & 0xFF) << 8) + (buffer[2*i] & 0xFF)))/32767.0 ;
         }
-        return TrimAudio.arrayList(d);
+        return TrimAudio.removeSilence(d, 8000);
         //return ;
         } catch (Exception e){}
         return new ArrayList<>();   
     }
  
+    public ArrayList<Double> muestra(File audio){
+        try{
+        AudioInputStream ai = AudioSystem.getAudioInputStream(audio);
+        byte[] buffer = new byte[ai.available()];
+        ai.read(buffer);
+        int N = buffer.length;  
+        double[] d = new double[N/2];
+        for (int i = 0; i < N/2; i++) {
+            d[i] = ((short) (((buffer[2*i+1] & 0xFF) << 8) + (buffer[2*i] & 0xFF)))/32767.0 ;
+        }
+        return TrimAudio.arrayList(d);
+        //return ;
+        } catch (Exception e){}
+        return new ArrayList<>();   
+    }
+    
     //elimina los espacios vacios reduciendo el tamaño de la muestra en un porcentaje(pad)
      public ArrayList<Double> recortarMuestra(double[] a,double pad,int fr){
         ArrayList<Double> res = new ArrayList<>();

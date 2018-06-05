@@ -12,7 +12,7 @@ import smile.math.distance.DynamicTimeWarping;
  *
  * @author DroKaN
  */
-public class DTW extends Thread{
+public class DTW{
     
     private ArrayList<Double> resultados;
     private double[] m1;
@@ -24,10 +24,10 @@ public class DTW extends Thread{
         this.m1 = doubleArray(m1);
         this.m2 = doubleArray(m2);
     }
-    public void run()
+    public double run()
     {
         double res = DynamicTimeWarping.d(m1, m2);
-        resultados.add(res);
+       return res;
     }
     
      private  double[] doubleArray(ArrayList<Double> m1){

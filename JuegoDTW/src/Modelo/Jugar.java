@@ -12,12 +12,12 @@ import javax.swing.JLabel;
  *
  * @author DroKaN
  */
-public class MoverJugador extends Thread{
+public class Jugar extends Thread{
     Jugador jugador;
     TableroJuego tablero;
     ArrayList<String> movimientos;
     JLabel puntuacion;
-    public MoverJugador(Jugador jugador,TableroJuego tablero, ArrayList<String> movimientos,JLabel puntuacion)
+    public Jugar(Jugador jugador,TableroJuego tablero, ArrayList<String> movimientos,JLabel puntuacion)
     {
         this.jugador = jugador;
         this.tablero = tablero;
@@ -31,22 +31,26 @@ public class MoverJugador extends Thread{
     
     private void moverJugador(){
         for(String movimiento : movimientos){
-            if(jugador.getVidas()> 0){
-                if(movimientoValido(movimiento)){
-                    if(movimiento.equals("izquierda") || movimiento.equals("derecha")){
+            if(!ganarJuego()){
+                if(jugador.getVidas()> 0){
+                    if(movimientoValido(movimiento)){
+                        if(movimiento.equals("izquierda") || movimiento.equals("derecha")){
 
-                        for (int n = 0 ; n < jugador.getAncho() ; n++){
-                            mover(movimiento);
-                            Complementos.dormir(40);
+                            for (int n = 0 ; n < jugador.getAncho() ; n++){
+                                mover(movimiento);
+                                Complementos.dormir(25);
+                            }
+                        }else{
+                             for (int n = 0 ; n < jugador.getLargo(); n++){
+                                mover(movimiento);
+                                Complementos.dormir(25);
+                            }
                         }
-                    }else{
-                         for (int n = 0 ; n < jugador.getLargo(); n++){
-                            mover(movimiento);
-                            Complementos.dormir(40);
-                        }
+                        verCuadro();
+                        Complementos.dormir(100);
                     }
-                    verCuadro();
-                    Complementos.dormir(2000);
+                }else{
+                    perderJuego();
                 }
             }
         }
@@ -123,5 +127,21 @@ public class MoverJugador extends Thread{
         int puntos = tablero.revelarCuadro(x, y);
         jugador.setVidas(puntos);
         puntuacion.setText(jugador.getVidas()+"");
+    }
+
+    private void perderJuego() {
+        tablero.setMensaje("perder");
+        tablero.mostrarMensaje();
+    }
+
+    private boolean ganarJuego() {
+        boolean res = false;
+        int x = jugador.getPosX()-tablero.getNroFilas()+1;
+        int y = jugador.getPosY()-tablero.getNroFilas()+1;
+        if(x == 0 && y == 0){
+            res = false;
+            tablero.mostrarMensaje();
+        }
+        return res;
     }
 }

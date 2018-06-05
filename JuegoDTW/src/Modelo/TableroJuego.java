@@ -6,6 +6,7 @@
 package Modelo;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 
 /**
@@ -16,13 +17,27 @@ public class TableroJuego {
     private Cuadro[][] tablero;
     private int nroFilas;
     private int nroColumnas;
-
+    private Cuadro mensaje;
     public TableroJuego(int nroFilas,int nroColumnas){
         this.tablero = new Cuadro[nroFilas][nroColumnas];
         this.nroFilas = nroFilas;
         this.nroColumnas = nroColumnas;
     }
     
+    public void setMensaje(int largo,int ancho){
+        mensaje = new Cuadro(ancho*nroFilas, largo*nroFilas);
+    }
+    
+    public JLabel getCuadroMensaje(){
+      return mensaje.getCuadro();
+    }
+    
+    public void setMensaje(String mensaje){
+        this.mensaje.setEstado(mensaje);
+    }
+    public void mostrarMensaje(){
+        mensaje.verEstado();
+    }
     public int getNroFilas() {
         return nroFilas;
     }
@@ -44,24 +59,20 @@ public class TableroJuego {
     }
     
     public void ponerTrampas(int nroTrampas){
-        if(nroTrampas<tablero.length*0.5){
-            for(int n = 1 ; n <= nroTrampas ; n++){
-                boolean valido = false;
-                while(!valido){
+        int cont = (int)(nroColumnas*nroColumnas*0.5);
+                while(cont > 0 ){
                     int x = (int)(Math.random()*nroFilas-1)+1;
                     int y = (int)(Math.random()*nroColumnas-1)+1;
                     Cuadro cuadro = tablero[x][y];
                     if(cuadro.getEstado().equals("")){
                         cuadro.setEstado("trampa");
-                        valido = true;
+                        cont--;
                     }
-                }
-            }
         }
     }
     
     public void poneHongos(int nroHongos){
-        if(nroHongos<tablero.length*0.5){
+        if(nroHongos<nroColumnas*nroColumnas*0.5){
             for(int n = 1 ; n <= nroHongos ; n++){
                 boolean valido = false;
                 while(!valido){
@@ -69,7 +80,7 @@ public class TableroJuego {
                     int y = (int)(Math.random()*nroColumnas-1)+1;
                     Cuadro cuadro = tablero[x][y];
                     if(cuadro.getEstado().equals("")){
-                        cuadro.setEstado("Hongo");
+                        cuadro.setEstado("hongo");
                         valido = true;
                     }
                 }
@@ -79,16 +90,24 @@ public class TableroJuego {
     public int revelarCuadro(int x,int y){
         Cuadro cuadro = tablero[x][y];
         cuadro.verEstado();
-        return puntos(cuadro.getEstado());
+        return puntos(cuadro);
     }
     
-    private int puntos(String estado){
+    private int puntos(Cuadro cuadro){
         int res = 0;
+        String estado = cuadro.getEstado();
+        
         if(estado.equals("trampa"))
-            return -2;
-        else if(estado.equals("Hongo"))
-            return 1;
+            res = -1;
+        else if(estado.equals("hongo"))
+            res = 1;
+        cuadro.setEstado("visto");
         return res;
+    }
+    
+    public Cuadro getCuadro(int x, int y)
+    {
+        return tablero[x][y];
     }
     
 }

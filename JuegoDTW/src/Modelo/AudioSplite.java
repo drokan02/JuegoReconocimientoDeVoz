@@ -41,13 +41,16 @@ public class AudioSplite {
     }
     
     public ArrayList<Palabra> getMuestras(){
+        muestras = new ArrayList<>();
         Grabador g = new Grabador();
         for(int n = 1 ; n < 5 ; n++){
             Palabra p = new Palabra();
-            File f = new File("Muestras/m00"+n+".wav");
+            p.setPalabra("m00"+n);
+            File f = new File("Muestras/"+p.getPalabra()+".wav");
+            System.out.println(f.getName());
             if(f.length() > 1000){
                 p.setAudio(f);
-                p.setMuestra(g.muestraDeAudio(f));
+                p.setMuestra(g.muestra(f));
                 muestras.add(p);
             }
         }

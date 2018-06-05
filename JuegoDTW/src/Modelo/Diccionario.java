@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import com.mathworks.toolbox.javabuilder.MWException;
+import comparar_muestras.dtwClass;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,16 +23,20 @@ import java.util.logging.Logger;
  * @author DroKaN
  */
 public class Diccionario {
+    MatlabDTW dtw;
     ArrayList<Palabra> palabras;
     BufferedReader lecturaDiccionario;
     PrintWriter escrituraDiccionario;
     File diccionario;
+    
     public Diccionario(){
+        dtw = new MatlabDTW();
         palabras = new ArrayList<>();
         diccionario = new File("src/Diccionario/diccionario.txt");
         crearLecturaEscritura();
         cargarDiccionario();
     }
+    
     
     private void crearLecturaEscritura(){
         try {
@@ -81,12 +87,32 @@ public class Diccionario {
         Double menor = Double.POSITIVE_INFINITY;
         ArrayList<Double> distancias = new ArrayList<>();
         for(Palabra p : palabras){
-            new DTW(distancias, palabra.getMuestra(), p.getMuestra()).start();   
+            dtw.calcularDistancia(distancias, p.getPalabra(), palabra.getPalabra());   
         }
-        while(distancias.size() < palabras.size()){
-            Complementos.dormir(1000);
+       
+        for (int i = 0 ; i < distancias.size() ; i++){
+            double d = distancias.get(i);
+            System.out.println(d +" "+palabras.get(i).palabra);
+            if(d < menor){
+                menor = d;
+                indice = i;
+            }
         }
-        
+        System.out.println();
+        return palabras.get(indice);
+    }
+    
+    public Palabra buscar(Palabra palabra){
+        int indice = 0;
+
+        Double menor = Double.POSITIVE_INFINITY;
+        ArrayList<Double> distancias = new ArrayList<>();
+        for(Palabra p : palabras){
+            DTW dtwm = new DTW(distancias, p.getMuestra(), palabra.muestra); 
+            distancias.add(dtwm.run());
+            System.err.println(distancias.size());
+        }
+        System.err.println("mm");
         for (int i = 0 ; i < distancias.size() ; i++){
             double d = distancias.get(i);
             System.out.println(d +" "+palabras.get(i).palabra);

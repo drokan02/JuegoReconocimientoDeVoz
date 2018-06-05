@@ -3,18 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/Grabador.java</file>
             <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/NewMain.java</file>
-            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/dtwMejorado.java</file>
-            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Vista/Tablero.java</file>
-            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/Diccionario.java</file>
-            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/TrimAudio.java</file>
-            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/ReconocerVoz.java</file>
+            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/Cuadro.java</file>
             <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Controlador/ControlJuego.java</file>
-            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Controlador/NewMain.java</file>
-            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Vista/Main.java</file>
-            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/Convinacion.java</file>
-            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/Complementos.java</file>
+            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/TableroJuego.java</file>
+            <file>file:/D:/Documentos/Repositorios%20git/JuegoReconocimientoDeVoz/JuegoDTW/src/Modelo/MoverJugador.java</file>
         </group>
     </open-files>
 </project-private>
