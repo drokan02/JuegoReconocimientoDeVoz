@@ -6,8 +6,8 @@
 package Modelo;
 
 import com.mathworks.toolbox.javabuilder.*;
-import comparar_muestras.dtwClass;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 /**
  *
@@ -19,22 +19,12 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws MWException {
-        TableroJuego t = new TableroJuego(12, 12);
-        t.llenarTablero(new JFrame(), 72, 72);
-        t.ponerTrampas(40);
-        t.poneHongos(40);
-        for(int n = 0 ; n  < 12 ; n++)
-        {
-            for (int m = 0 ; m < 12 ; m++)
-            {   String s = t.getCuadro(n, m).getEstado();
-                if(s.equals("hongo"))
-                    System.out.println(s);
-            }
-        }
-        
-       
-
-        
+      
+        File f = new File("Muestras/m001.wav");
+        System.out.println(f.length());
+        Grabador g = new Grabador();
+        ArrayList<Double> d = g.muestra(f);
+        System.out.println(d.size());
     }
     
 }

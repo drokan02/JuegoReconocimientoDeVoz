@@ -6,7 +6,6 @@
 package Modelo;
 
 import com.mathworks.toolbox.javabuilder.MWException;
-import comparar_muestras.dtwClass;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -55,7 +54,7 @@ public class Diccionario {
                 File audio = new File("src/Diccionario/"+p+".wav");
                 palabra.setPalabra(p);
                 palabra.setAudio(audio);
-                palabra.setMuestra(new Grabador().muestraDeAudio(audio));
+                palabra.setMuestra(new Grabador().muestra(audio));
                 palabras.add(palabra);
             }
                 } catch (Exception ex) {
@@ -110,9 +109,7 @@ public class Diccionario {
         for(Palabra p : palabras){
             DTW dtwm = new DTW(distancias, p.getMuestra(), palabra.muestra); 
             distancias.add(dtwm.run());
-            System.err.println(distancias.size());
         }
-        System.err.println("mm");
         for (int i = 0 ; i < distancias.size() ; i++){
             double d = distancias.get(i);
             System.out.println(d +" "+palabras.get(i).palabra);

@@ -77,7 +77,6 @@ public class Jugar extends Thread{
         int maxY = tablero.getNroFilas();
         int posX = jugador.getPosX()+x;
         int posY = jugador.getPosY()+y;
-        System.out.println(maxX+" "+posX+" "+maxY+" "+posY);
         if(posX >= 0 && posX < maxX && posY >= 0 && posY < maxY){
             res = true;
             jugador.setPosX(x);

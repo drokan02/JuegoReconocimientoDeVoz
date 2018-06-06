@@ -8,7 +8,7 @@ package Modelo;
 import com.mathworks.toolbox.javabuilder.MWArray;
 import com.mathworks.toolbox.javabuilder.MWException;
 import com.mathworks.toolbox.javabuilder.MWNumericArray;
-import comparar_muestras.dtwClass;
+import dtw.Dtw;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author DroKaN
  */
 public class MatlabDTW extends Thread{
-    dtwClass dtw ;
+    Dtw dtw ;
     public MatlabDTW(){
         nuevoDTW();
     }
@@ -26,7 +26,7 @@ public class MatlabDTW extends Thread{
     
     private void nuevoDTW(){
         try {
-            dtw = new dtwClass();
+            dtw = new Dtw();
         } catch (MWException ex) {
             
         }
@@ -37,10 +37,10 @@ public class MatlabDTW extends Thread{
          
         try {
             Object[] results = null;
-            dtwClass  dtw = new dtwClass();
             String d1 = "src/Diccionario/";
             String d2 = "Muestras/";
-            results = dtw.comparar_muestras(1,d1+m1+".wav",d2+m2+".wav");
+            //se ejecuta el metodo dtw.distancia, mandando la direccion donde estan las muestras
+            results = dtw.distancia(1,d1+m1+".wav",d2+m2+".wav");
             MWArray result = (MWNumericArray) results[0];
             double[][] total = (double[][])result.toArray();
             distancia.add(total[0][0]);

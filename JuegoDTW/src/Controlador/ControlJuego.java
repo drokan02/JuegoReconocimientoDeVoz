@@ -29,7 +29,7 @@ public class ControlJuego implements ActionListener
         {
             jugador = new Jugador("", 5);
             tablero = new TableroJuego(12,12);
-            //diccionario =  new Diccionario();
+            diccionario =  new Diccionario();
             ventana = new Ventana();
             movimiento = new ArrayList<>();
         }
@@ -44,9 +44,9 @@ public class ControlJuego implements ActionListener
             ventana.add(tablero.getCuadroMensaje());
             jugador.mostrarPersonaje(ventana, 40, 40);
             tablero.llenarTablero(ventana, 40, 40);
-            //tablero.ponerTrampas(60);
+            tablero.ponerTrampas(60);
             tablero.poneHongos(30);
-            ventana.setSize(40*17, 40*14);
+            ventana.setSize(40*17, 40*13+10);
             ventana.txtPuntos.setText(jugador.getVidas()+"");
             ventana.setLocationRelativeTo(null);
             ventana.setVisible(true);
@@ -63,18 +63,21 @@ public class ControlJuego implements ActionListener
     public void actionPerformed(ActionEvent e) 
     {
         if(ventana.btJugar == e.getSource()){
-           /* AudioSplite as = new AudioSplite();
+           AudioSplite as = new AudioSplite();
             grabarMuestra();
             as.audioSplite();
-          
+            //se realiza el split de la muestra capturada 
             movimiento = (as.getMuestras());
-            System.out.println(movimiento.size());*/
-            
-            jugar();
+            //verificamos que se realizo correctamente el split
+            if(movimiento.size() == 3)
+                jugar();
+            else
+                JOptionPane.showMessageDialog(ventana, "No se entendio lo que dijo");
             
         }
     }  
     
+    //se obtiene la muestra de los movimentos con un tiempo de 8s para la grabacion
     private void grabarMuestra(){
         Grabador g =  new Grabador();
         for(int i = 0 ; i < 8 ; i++){
@@ -89,23 +92,6 @@ public class ControlJuego implements ActionListener
 
     }
     
-  
-     private Palabra Muestra(){
-        Grabador g =  new Grabador();
-        Palabra p = new Palabra();
-        for(int i = 0 ; i < 9 ; i++){
-            if(i == 0)
-                g.grabarVoz("");
-            else if(i == 8){
-                g.finalizar();
-                File muestra = g.getAudio();
-                p.setAudio(muestra);
-                p.setMuestra(g.muestraDeAudio(muestra));
-            }
-            Complementos.dormir(1000);       
-        }
-        return p;
-    }
     private double menor(double n,double m){
         if(n < m)
             return n;
@@ -114,19 +100,21 @@ public class ControlJuego implements ActionListener
     
     private void jugar(){
         ArrayList<String> movimientos = new ArrayList<>();
-        movimientos.add("derecha");
+       /* movimientos.add("derecha");
         movimientos.add("derecha");
         movimientos.add("abajo");
         movimientos.add("abajo");
         //movimientos.add("arriba");
        // movimientos.add("arriba");
         //movimientos.add("izquierda");
-        //movimientos.add("abajo");
-      /*  for(Palabra p : movimiento){
+        //movimientos.add("abajo");*/
+       //el diccionario realiza el reconocimiento de voz para determinar que palabra es
+        for(Palabra p : movimiento){
             Palabra palabra = diccionario.buscarPalabra(p);
             movimientos.add(palabra.getPalabra());
-        }*/
+        }
         
+        //se ejecuta el juego enviando los movimientos reconicidos 
         new Jugar(jugador, tablero, movimientos,ventana.txtPuntos).start();
     }
 }
